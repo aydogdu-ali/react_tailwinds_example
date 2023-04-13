@@ -1,21 +1,22 @@
-import React, { useState } from 'react'
-
-const AddCourse = () => {
-    const [course, setCourse] = useState("")
-     const [price, setPrice] = useState("");
+import { useState } from "react";
 
 
-     const handleSubmit =(e)=>{
-        e.preventDefault()
-        if(course.trim().length===0 ){
-           return;
-        }
-        const kurs = {course, price}
-        console.log(kurs)
-        setCourse("")
-        setPrice("")
 
-     }
+const AddCourse = ({ createCourse, setShow }) => {
+  const [courseName, setCourseName] = useState("");
+  const [price, setPrice] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (courseName.trim().length == 0) {
+      return;
+    }
+    createCourse(courseName, price);
+    setShow(true);
+    setCourseName("");
+    setPrice("");
+  };
+
   return (
     <div className="rounded-md">
       {" "}
@@ -34,12 +35,12 @@ const AddCourse = () => {
           className="w-full mx-auto border p-2 rounded-md"
           placeholder="Kurs ismini yazınız"
           id="kurs"
-          value={course}
-          onChange={(e) => setCourse(e.target.value)}
+          value={courseName}
+          onChange={(e) => setCourseName(e.target.value)}
           required
         />
         <label
-          htmlFor="ücret "
+          htmlFor="price"
           className="sfont-small text-red-700 font-extrabold tracking-widest"
         >
           Kurs Ücreti
@@ -48,7 +49,7 @@ const AddCourse = () => {
           type="number"
           className=" w-full mx-auto border p-2 rounded-md"
           placeholder="Kurs ücretinizi yazınız"
-          id="ücret"
+          id="price"
           value={price}
           onChange={(e) => setPrice(e.target.value)}
           required
@@ -59,6 +60,6 @@ const AddCourse = () => {
       </form>
     </div>
   );
-}
+};
 
 export default AddCourse
