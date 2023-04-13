@@ -1,18 +1,30 @@
 import { useState } from "react";
+import Modal from "./Modal";
 
 const AddCourse = ({ createCourse, setShow }) => {
+  // inputtaki bilgiyi almak için yazılan stateler
   const [courseName, setCourseName] = useState("");
   const [price, setPrice] = useState("");
+  // kurs ekleme tuşuna bastığında inputlar boşsa açılacak modal bilgilerini tutan state 
+  const [error, setError] = useState(null);
 
+
+  // veriler girildikten sonra verileri state atacak fonksiyon
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (courseName.trim().length == 0) {
+    if (courseName.trim().length == 0 || price.length == 0) {
+      setError("Lütfen ilgili alandaki bilgileri eksiksiz  doldurunuz!");
       return;
     }
     createCourse(courseName, price);
     setShow(false);
     setCourseName("");
     setPrice("");
+  };
+
+  // Açılan Modalı kapatan fonksiyon
+  const handleConfirm = () => {
+    setError(null);
   };
 
   return (
@@ -35,7 +47,6 @@ const AddCourse = ({ createCourse, setShow }) => {
           id="kurs"
           value={courseName}
           onChange={(e) => setCourseName(e.target.value.toLocaleUpperCase())}
-          required
         />
         <label
           htmlFor="price"
@@ -50,12 +61,12 @@ const AddCourse = ({ createCourse, setShow }) => {
           id="price"
           value={price}
           onChange={(e) => setPrice(e.target.value)}
-          required
         />
         <button className=" max-w-md py-3 px-2 mt-2 text-sm bg-blue-500 text-white font-extrabold tracking-widest rounded-md mx-auto">
           Kaydet
         </button>
       </form>
+      {error && <Modal handleConfirm={handleConfirm} error={error} />}
     </div>
   );
 };

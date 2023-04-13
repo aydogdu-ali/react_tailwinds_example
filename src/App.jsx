@@ -6,6 +6,7 @@ import AddCourse from './components/AddCourse';
 import ListCourse from "./components/ListCourse";
 
 
+
 function App() {
       const [course, setCourse] = useState([]);
         const [show, setShow] = useState(true);
@@ -27,11 +28,14 @@ const createCourse = (courseName, price) => {
 // Kurs silme fonksiyonu
 
 const deleteCourse =(id)=>{
+ 
   const newListCourse = course.filter((item)=> item.id !== id)
   setCourse(newListCourse)
+
 }
 
-console.log(course)
+
+
 return (
   <div className="App bg-slate-100 w-1/3 mx-auto mt-3 rounded-md p-5">
     <h1 className="text-center text-orange-500 font-extrabold tracking-widest my-5 text-xl">
@@ -39,6 +43,7 @@ return (
     </h1>
     <AddCourse createCourse={createCourse} setShow={setShow} />
     {!show && <ListCourse course={course} deleteCourse={deleteCourse} />}
+   
   </div>
 );
 }
