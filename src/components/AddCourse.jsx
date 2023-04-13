@@ -1,7 +1,5 @@
 import { useState } from "react";
 
-
-
 const AddCourse = ({ createCourse, setShow }) => {
   const [courseName, setCourseName] = useState("");
   const [price, setPrice] = useState("");
@@ -12,7 +10,7 @@ const AddCourse = ({ createCourse, setShow }) => {
       return;
     }
     createCourse(courseName, price);
-    setShow(true);
+    setShow(false);
     setCourseName("");
     setPrice("");
   };
@@ -36,7 +34,7 @@ const AddCourse = ({ createCourse, setShow }) => {
           placeholder="Kurs ismini yazınız"
           id="kurs"
           value={courseName}
-          onChange={(e) => setCourseName(e.target.value)}
+          onChange={(e) => setCourseName(e.target.value.toLocaleUpperCase())}
           required
         />
         <label
@@ -62,4 +60,4 @@ const AddCourse = ({ createCourse, setShow }) => {
   );
 };
 
-export default AddCourse
+export default AddCourse;
