@@ -6,7 +6,7 @@
 
 #Bu uygulamada componentler arası veri gönderimi filtreleme veri ekleme fonksiyonları ve modal kullanma gösterilmiştir.
 
-#İlgili componentlerde detaylı olarak açıklanmıştır.
+#Fonksiyonlarla ilgili detaylar componentlerde açıklanmıştır.
 
 #Faydası olması dileklerimle iyi kodlamalar...
 
