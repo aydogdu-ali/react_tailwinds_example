@@ -4,36 +4,41 @@ const ListCourse = ({ course, deleteCourse }) => {
     console.log(course)
 
 
-    // kurslar silinirse kurs listesi componenti görülmeyecek koşul ifadesi
+    // kurslar silinirse kurs listesi componentinin görülmemesini sağlayacak koşul ifadesi
  if (course.length == 0) {
    return;
  }
 
 
   return (
-    <div className="bg-slate-300 mt-5 flex flex-col justify-center py-4">
+    <div className=" bg-slate-300 mt-5 flex flex-col justify-center py-4">
       <h1 className="text-amber-600 text-center font-bold text-xl pb-3">
         Kurs Listesi
       </h1>
 
-      <table className="table-fixed mx-10  ">
+      <table className="  table-fixed mx-10 border-separate border-spacing-2 ">
         <thead className="text-justify text-green-700">
-          <tr className=''>
+          <tr className="">
             <th>Sıra</th>
             <th>Kurs Adı</th>
             <th>Fiyatı</th>
+            <th>Tarih</th>
             <th>Kaldır</th>
           </tr>
         </thead>
         {course?.map((item, index) => {
-          const { id, courseName, price } = item;
+          const { id, courseName, price, date } = item;
           return (
             <tbody className=" text-sky-700 " key={id}>
-              <tr className="mb-2 hover:text-neutral-600 ">
+              <tr className=" mb-2 hover:text-neutral-600 ">
                 <td>{index + 1}.</td>
-                <td>{courseName}</td>
+                <td className="capitalize">{courseName}</td>
                 <td>{price}₺</td>
-                <td className="cursor-pointer ms-5" onClick={() => deleteCourse(id)}>
+                <td>{date}</td>
+                <td
+                  className="cursor-pointer ms-5 "
+                  onClick={() => deleteCourse(id)}
+                >
                   {
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

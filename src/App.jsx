@@ -8,18 +8,22 @@ import ListCourse from "./components/ListCourse";
 
 
 function App() {
+  // kursları tutan state
       const [course, setCourse] = useState([]);
-        const [show, setShow] = useState(true);
+
+      // başlangıçta listCourse componentini göstermeyen state
+        // const [show, setShow] = useState(true);
 
 
       // kurs Ekleme Fonksiyonu
-const createCourse = (courseName, price) => {
+const createCourse = (courseName, price,date) => {
     const newCourse = [
     ...course,
     {
       id: new Date().getTime(),
       courseName: courseName,
       price: price,
+      date:date
     },
   ];
   setCourse(newCourse);
@@ -41,8 +45,8 @@ return (
     <h1 className="text-center text-orange-500 font-extrabold tracking-widest my-5 text-xl">
       Kurs Ekleme Uygulaması
     </h1>
-    <AddCourse createCourse={createCourse} setShow={setShow} />
-    {!show && <ListCourse course={course} deleteCourse={deleteCourse} />}
+    <AddCourse createCourse={createCourse}  />
+    {course.length> 0 ? ( <ListCourse course={course} deleteCourse={deleteCourse} />): null}
    
   </div>
 );

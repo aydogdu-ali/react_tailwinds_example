@@ -1,10 +1,11 @@
 import { useState } from "react";
 import Modal from "./Modal";
 
-const AddCourse = ({ createCourse, setShow }) => {
+const AddCourse = ({ createCourse }) => {
   // inputtaki bilgiyi almak için yazılan stateler
   const [courseName, setCourseName] = useState("");
   const [price, setPrice] = useState("");
+   const [date, setDate] = useState("");
   // kurs ekleme tuşuna bastığında inputlar boşsa açılacak modal bilgilerini tutan state 
   const [error, setError] = useState(null);
 
@@ -12,14 +13,14 @@ const AddCourse = ({ createCourse, setShow }) => {
   // veriler girildikten sonra verileri state atacak fonksiyon
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (courseName.trim().length == 0 || price.length == 0) {
+    if (courseName.trim().length == 0 || price.length == 0 || date.length==0) {
       setError("Lütfen ilgili alandaki bilgileri eksiksiz  doldurunuz!");
       return;
     }
-    createCourse(courseName, price);
-    setShow(false);
+    createCourse(courseName, price,date);
     setCourseName("");
     setPrice("");
+    setDate("")
   };
 
   // Açılan Modalı kapatan fonksiyon
@@ -42,11 +43,11 @@ const AddCourse = ({ createCourse, setShow }) => {
         </label>
         <input
           type="text"
-          className="w-full mx-auto border p-2 rounded-md"
+          className="w-full mx-auto border p-2 rounded-md "
           placeholder="Kurs ismini yazınız"
           id="kurs"
           value={courseName}
-          onChange={(e) => setCourseName(e.target.value.toLocaleUpperCase())}
+          onChange={(e) => setCourseName(e.target.value)}
         />
         <label
           htmlFor="price"
@@ -61,6 +62,20 @@ const AddCourse = ({ createCourse, setShow }) => {
           id="price"
           value={price}
           onChange={(e) => setPrice(e.target.value)}
+        />
+        <label
+          htmlFor="date"
+          className="sfont-small text-red-700 font-extrabold tracking-widest"
+        >
+          Kurs Tarihi
+        </label>
+        <input
+          type="date"
+          className=" w-full mx-auto border p-2 rounded-md"
+          placeholder="Kurs ücretinizi yazınız"
+          id="date"
+          value={date}
+          onChange={(e) => setDate(e.target.value)}
         />
         <button className=" max-w-md py-3 px-2 mt-2 text-sm bg-blue-500 text-white font-extrabold tracking-widest rounded-md mx-auto">
           Kaydet
