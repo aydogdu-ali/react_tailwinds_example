@@ -9,7 +9,7 @@ const ListCourse = ({ course, deleteCourse }) => {
    return;
  }
 
-
+// mao ederken tablo kullandım.
   return (
     <div className=" bg-slate-300 mt-5 flex flex-col justify-center py-4">
       <h1 className="text-amber-600 text-center font-bold text-xl pb-3">
@@ -26,6 +26,7 @@ const ListCourse = ({ course, deleteCourse }) => {
             <th>Kaldır</th>
           </tr>
         </thead>
+        {/*course dizisini map ediyoruz.*/}
         {course?.map((item, index) => {
           const { id, courseName, price, date } = item;
           return (

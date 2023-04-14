@@ -6,17 +6,20 @@ const AddCourse = ({ createCourse }) => {
   const [courseName, setCourseName] = useState("");
   const [price, setPrice] = useState("");
    const [date, setDate] = useState("");
-  // kurs ekleme tuşuna bastığında inputlar boşsa açılacak modal bilgilerini tutan state 
+
+  // kurs ekleme tuşuna bastığında inputlar boş ise açılacak modal bilgilerini tutan state 
   const [error, setError] = useState(null);
 
 
   // veriler girildikten sonra verileri state atacak fonksiyon
   const handleSubmit = (e) => {
     e.preventDefault();
+    // inputlarda veri yoksa hata vermek için koşul ifadesi
     if (courseName.trim().length == 0 || price.length == 0 || date.length==0) {
       setError("Lütfen ilgili alandaki bilgileri eksiksiz  doldurunuz!");
       return;
     }
+    //inpuntan gelen verileri parametre olarak fonksiyona gönderiyoruz(App.jsx de tanımladık)
     createCourse(courseName, price,date);
     setCourseName("");
     setPrice("");
